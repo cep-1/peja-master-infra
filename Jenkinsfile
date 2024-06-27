@@ -34,6 +34,7 @@ pipeline {
                 ]) {
                     script {
                         sh 'terraform init -input=false'
+                        sh 'terraform refresh'
                         sh 'terraform plan'
 
                         if (BUILD_TYPE == 'deploy') {
