@@ -72,10 +72,10 @@ resource "aws_nat_gateway" "natgw-1" {
   subnet_id     = aws_subnet.public-1.id
 }
 
-resource "aws_nat_gateway" "natgw-2" {
-  allocation_id = aws_eip.nat-2.id
-  subnet_id     = aws_subnet.public-2.id
-}
+# resource "aws_nat_gateway" "natgw-2" {
+#   allocation_id = aws_eip.nat-2.id
+#   subnet_id     = aws_subnet.public-2.id
+# }
 
 
 # Route Tables
@@ -92,7 +92,7 @@ resource "aws_route_table" "private-2" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.natgw-2.id
+    gateway_id = aws_nat_gateway.natgw-1.id
   }
 }
 
