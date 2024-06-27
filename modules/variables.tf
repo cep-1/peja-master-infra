@@ -18,6 +18,11 @@ variable "private_subnet_2" {
     type = string
 }
 
+variable "private_subnet_3" {
+    description = "The AZ for private subnet 3"
+    type = string
+}
+
 variable "launch_template_ami_id" {
     description = "The ami id for the launch template"
     type = string
