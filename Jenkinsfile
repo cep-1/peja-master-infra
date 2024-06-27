@@ -33,15 +33,13 @@ pipeline {
                     ]
                 ]) {
                     script {
-                        if (BUILD_TYPE != 'destroy') {
-                            sh 'terraform init -input=false'
-                            sh 'terraform plan'
+                        sh 'terraform init -input=false'
+                        sh 'terraform plan'
 
-                            if (BUILD_TYPE == 'deploy') {
-                                sh 'terraform apply --auto-approve'
-                            }
+                        if (BUILD_TYPE == 'deploy') {
+                            sh 'terraform apply --auto-approve'
                         }
-                        else {
+                        else if (BUILD_TYPE == 'destroy') {
                             sh 'terraform destroy --auto-approve'
                         }
                     }
