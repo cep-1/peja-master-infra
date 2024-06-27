@@ -7,10 +7,11 @@ provider "aws" {
     alias = "eu_central_1"
     region = "eu-central-1"
 }
+
 module "master-infra-eu" {
     source = "./modules"
     providers = {
-      aws = aws.eu_central_1
+        aws = aws.eu_central_1
     }
 
     private_subnet_1 = "eu-central-1a"
