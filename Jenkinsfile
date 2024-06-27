@@ -34,29 +34,15 @@ pipeline {
                 ]) {
                     script {
                         if (BUILD_TYPE != 'destroy') {
-                            sh 'cd infrastructure-eu'
                             sh 'terraform init -input=false'
                             sh 'terraform plan'
-
-                            sh 'cd ../infrastructure-us'
-                            sh 'terraform init -input=false'
-                            sh 'terraform plan'
-                            sh 'cd ..'
 
                             if (BUILD_TYPE == 'deploy') {
-                                sh 'cd infrastructure-eu'
                                 sh 'terraform apply --auto-approve'
-                                sh 'cd ../infrastructure-us'
-                                sh 'terraform apply --auto-approve'
-                                sh 'cd ..'
                             }
                         }
                         else {
-                            sh 'cd infrastructure-eu'
                             sh 'terraform destroy --auto-approve'
-                            sh 'cd ../infrastructure-us'
-                            sh 'terraform destroy --auto-approve'
-                            sh 'cd ..'
                         }
                     }
                 }
