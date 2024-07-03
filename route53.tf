@@ -52,3 +52,4 @@ resource "cloudflare_record" "ns_4" {
   ttl     = 3600
   value   = aws_route53_zone.main_r53_zone.name_servers[4]
 }
+
