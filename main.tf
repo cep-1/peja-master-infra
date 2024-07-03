@@ -42,4 +42,18 @@ module "master-infra-us" {
     asg_desired_size = 1
     asg_max_size = 2
 
+
+}
+terraform {
+  required_providers {
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 4.0"
+    }
+  }
+}
+variable "cloudflare_api_token" {}
+
+provider "cloudflare" {
+  api_token = var.cloudflare_api_token
 }

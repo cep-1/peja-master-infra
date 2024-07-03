@@ -30,9 +30,11 @@ pipeline {
                         credentialsId: 'peja-master-infra-user', 
                         accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
                         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-                    ]
+                    ],
+                    string(credentialsId: 'cloudflare-token', variable: 'CLOUDFLARE_API_TOKEN')
                 ]) {
                     script {
+                        env.TF_VAR_cloudflare_api_token = env.CLOUDFLARE_API_TOKEN
                         sh 'terraform init -input=false'
                         sh 'terraform refresh'
                         sh 'terraform plan'
