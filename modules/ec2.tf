@@ -32,7 +32,7 @@ resource "aws_autoscaling_group" "app" {
     version = "$Latest"
   }
 
-  # Use ALB for health checks
+  # Use NLB for health checks
   health_check_type         = "ELB"
   health_check_grace_period = 50
 
